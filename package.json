@@ -1,0 +1,25 @@
+{
+  "name": "jscurl",
+  "version": "0.1.0",
+  "description": "Easy to use",
+  "type": "module",
+  "main": "jscurl.js",
+  "bin": {
+    "jscurl": "jscurl.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "curl",
+    "http",
+    "https",
+    "request",
+    "fetch",
+    "api",
+    "javascript",
+    "cli"
+  ],
+  "author": "suissAI",
+  "license": "MIT"
+}
