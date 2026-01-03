@@ -9,9 +9,9 @@
 
 ## 📖 Sobre o Projeto
 
-O **JS-cURL** (também conhecido como `requrl`) é uma ferramenta de linha de comando que permite fazer requisições HTTP usando JavaScript diretamente no terminal. Ao invés de decorar sintaxes complexas de cURL ou usar ferramentas com configurações verbosas, você pode usar JavaScript puro e familiar!
+O **requrl** (também conhecido como `jsurl`) é uma ferramenta de linha de comando que permite fazer requisições HTTP usando JavaScript diretamente no terminal. Ao invés de decorar sintaxes complexas de cURL ou usar ferramentas com configurações verbosas, você pode usar JavaScript puro e familiar!
 
-### ✨ Por que usar JS-cURL?
+### ✨ Por que usar requrl?
 
 - 🎯 **Sintaxe JavaScript familiar** - Use `await`, objetos, arrays, tudo que você já conhece
 - 🚀 **Rápido e direto** - Execute requisições complexas em uma única linha
@@ -21,7 +21,21 @@ O **JS-cURL** (também conhecido como `requrl`) é uma ferramenta de linha de co
 
 ## 🚀 Instalação
 
-### Instalação Global (Recomendado)
+### Instalação Local para Desenvolvimento (Recomendado para testar)
+
+Se você clonou ou baixou este repositório, pode instalar localmente:
+
+```bash
+# Usando npm
+npm link
+
+# Ou usando bun
+bun link
+```
+
+Isso criará os comandos `requrl` e `jscurl` globalmente apontando para este diretório.
+
+### Instalação Global (Quando publicado no npm)
 
 ```bash
 npm install -g @purecore/requrl
@@ -33,10 +47,12 @@ Ou usando `bun`:
 bun install -g @purecore/requrl
 ```
 
-### Uso Local
+### Uso Direto (Sem instalação)
+
+Você também pode usar diretamente com Node.js:
 
 ```bash
-npm install @purecore/requrl
+node requrl.js "await req.get('https://api.github.com/users/octocat')"
 ```
 
 ## 💻 Como Usar
@@ -102,7 +118,7 @@ jscurl "await req.get('https://api.example.com/data', { headers: { 'X-Custom-Hea
 
 ## 🏗️ Como Funciona
 
-O JS-cURL funciona de forma inteligente e elegante:
+O requrl funciona de forma inteligente e elegante:
 
 1. **Parser de Código JavaScript**: O comando recebe uma string contendo código JavaScript válido
 2. **AsyncFunction**: Usa `AsyncFunction` do JavaScript para executar código assíncrono dinamicamente
@@ -202,7 +218,7 @@ jscurl/
 
 ### Como Foi Feito
 
-O JS-cURL foi desenvolvido com foco em simplicidade e poder:
+O requrl foi desenvolvido com foco em simplicidade e poder:
 
 1. **Shebang Line**: `#!/usr/bin/env node` permite executar o arquivo diretamente
 2. **Bin Configuration**: O `package.json` define os comandos `requrl` e `jscurl` no campo `bin`

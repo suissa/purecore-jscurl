@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
 /**
- * JS-cURL: Uma ferramenta CLI para fazer requisições HTTP usando sintaxe JavaScript.
- * Uso: node jscurl.js "await req.get('https://api.github.com/users/octocat')"
+ * requrl: Uma ferramenta CLI para fazer requisições HTTP usando sintaxe JavaScript.
+ * Uso: requrl "await req.get('https://api.github.com/users/octocat')"
  */
 
-const util = require("util");
+import { inspect } from "util";
 
 // Configuração de cores para o terminal
 const colors = {
@@ -25,7 +25,7 @@ const colors = {
 function logResult(data) {
   console.log(`${colors.cyan}--- Resultado ---${colors.reset}`);
   console.log(
-    util.inspect(data, {
+    inspect(data, {
       showHidden: false,
       depth: null,
       colors: true,
@@ -46,7 +46,7 @@ const req = {
         method,
         headers: {
           "Content-Type": "application/json",
-          "User-Agent": "JS-cURL-Tool",
+          "User-Agent": "requrl-Tool",
           ...headers,
         },
         ...rest,
@@ -102,8 +102,9 @@ async function run() {
   const code = process.argv[2];
 
   if (!code) {
-    console.log(`${colors.bright}JS-cURL CLI${colors.reset}`);
-    console.log(`Uso: jscurl "await req.post('url', { dado: 1 })"`);
+    console.log(`${colors.bright}requrl CLI${colors.reset}`);
+    console.log(`Uso: requrl "await req.post('url', { dado: 1 })"`);
+    console.log(`     jscurl "await req.post('url', { dado: 1 })"`);
     process.exit(0);
   }
 
