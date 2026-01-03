@@ -1,11 +1,12 @@
 {
-  "name": "jscurl",
-  "version": "0.1.0",
-  "description": "Easy to use",
+  "name": "@purecore/requrl",
+  "version": "0.2.0",
+  "description": "cURL easy to use",
   "type": "module",
-  "main": "jscurl.js",
+  "main": "requrl.js",
   "bin": {
-    "jscurl": "jscurl.js"
+    "requrl": "requrl.js",
+    "jscurl": "requrl.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
