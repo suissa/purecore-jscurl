@@ -1,12 +1,13 @@
 {
-  "name": "@purecore/requrl",
-  "version": "0.2.0",
+  "name": "r3q",
+  "version": "0.2.1",
   "description": "cURL easy to use",
   "type": "module",
   "main": "requrl.js",
   "bin": {
     "requrl": "requrl.js",
-    "jscurl": "requrl.js"
+    "jscurl": "requrl.js",
+    "r3q": "requrl.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
