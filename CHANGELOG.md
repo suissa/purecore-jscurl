@@ -5,6 +5,14 @@ Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [0.2.2] - 2026-01-04
+
+### What's Changed
+
+- ✨ feat: Smart Mode! Methods are now optional (GET/POST/PUT inferred from usage)
+- 📝 docs: Updated CLI help with new usage examples
+- 🏷️ chore: Renamed package to `tscurl`
+
 ## [0.2.1] - 2026-01-04
 
 ### What's Changed

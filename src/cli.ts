@@ -25,22 +25,73 @@ function logResult(data: any) {
 }
 
 async function run() {
-  const code = process.argv[2];
+  const args = process.argv.slice(2);
+  const codeOrUrl = args[0];
 
-  if (!code) {
-    console.log(`${colors.bright}r3q CLI${colors.reset}`);
-    console.log(`Uso: r3q "await r3q.post('url', { dado: 1 })"`);
+  if (!codeOrUrl) {
+    console.log(`${colors.bright}tscurl (r3q) CLI${colors.reset}`);
+    console.log(`\nModo Inteligente:`);
+    console.log(`  r3q <url>               => GET`);
+    console.log(`  r3q <url> <json_body>   => POST (Create)`);
+    console.log(`  r3q <url?q> <json_body> => PUT (Update)`);
+    console.log(`\nModo Script:`);
+    console.log(`  r3q "await r3q.post('url', { ... })"`);
     process.exit(0);
   }
 
   try {
+    // SMART MODE: Se começar com http(s) e não for um bloco de código explícito
+    if (
+      codeOrUrl.match(/^https?:\/\//) &&
+      !codeOrUrl.includes("await ") &&
+      !codeOrUrl.includes(";")
+    ) {
+      const url = codeOrUrl;
+      const bodyRaw = args[1];
+
+      let result;
+
+      // GET
+      if (!bodyRaw) {
+        console.log(`${colors.yellow}Running Smart GET: ${url}${colors.reset}`);
+        result = await r3q.get(url);
+      }
+      // POST ou PUT
+      else {
+        let body: any;
+        try {
+          body = JSON.parse(bodyRaw);
+        } catch {
+          body = bodyRaw; // Fallback para string se não for JSON válido
+        }
+
+        const hasQuery = url.includes("?");
+
+        if (hasQuery) {
+          console.log(
+            `${colors.yellow}Running Smart PUT (Update): ${url}${colors.reset}`
+          );
+          result = await r3q.put(url, body);
+        } else {
+          console.log(
+            `${colors.yellow}Running Smart POST (Create): ${url}${colors.reset}`
+          );
+          result = await r3q.post(url, body);
+        }
+      }
+
+      logResult(result);
+      return;
+    }
+
+    // SCRIPT MODE (Compatibilidade total com versões anteriores)
+    const code = codeOrUrl;
     const AsyncFunction = Object.getPrototypeOf(
       async function () {}
     ).constructor;
-    // Inject 'r3q' and implementation
     const execute = new AsyncFunction(
       "r3q",
-      "req", // Alias for backward compatibility if desired, or just convenience
+      "req",
       `
       try {
         const result = ${code.startsWith("await") ? code : "await " + code};
@@ -54,7 +105,7 @@ async function run() {
     const result = await execute(r3q, r3q);
     logResult(result);
   } catch (err: any) {
-    console.error(`${colors.red}Erro de Sintaxe:${colors.reset}`, err.message);
+    console.error(`${colors.red}Erro:${colors.reset}`, err.message);
   }
 }
 

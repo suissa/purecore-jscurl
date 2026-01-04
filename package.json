@@ -1,6 +1,6 @@
 {
-  "name": "r3q",
-  "version": "0.2.1",
+  "name": "tscurl",
+  "version": "0.2.2",
   "description": "cURL easy to use",
   "type": "module",
   "main": "requrl.js",
