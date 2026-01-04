@@ -43,7 +43,9 @@ function createInstance(): R3qInstance {
     if (
       body &&
       typeof body === "object" &&
-      !InitBody.prototype.isPrototypeOf(body)
+      !(body instanceof URLSearchParams) &&
+      !(body instanceof Blob) &&
+      !(body instanceof FormData)
     ) {
       // Se for objeto simples e não enviei headers de form, assumo JSON
       if (
