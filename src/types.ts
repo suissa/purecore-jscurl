@@ -9,6 +9,7 @@ export type StatusCode = Brand<number, "StatusCode">;
 export type ContentType = Brand<string, "ContentType">;
 
 export interface R3qRequestConfig extends RequestInit {
+  url?: string | Url;
   baseURL?: Url;
   params?: Record<string, any>;
   data?: any;
