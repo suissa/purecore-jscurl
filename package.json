@@ -1,12 +1,14 @@
 {
-  "name": "tscurl",
-  "version": "0.2.2",
-  "description": "cURL easy to use",
+  "name": "jscurl",
+  "version": "0.2.3",
+  "description":"JS > cURL",
   "type": "module",
   "main": "requrl.js",
   "bin": {
+    "req": "requrl.js",
     "requrl": "requrl.js",
     "jscurl": "requrl.js",
+    "axios": "requrl.js",
     "r3q": "requrl.js"
   },
   "scripts": {
